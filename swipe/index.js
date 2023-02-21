@@ -9,6 +9,6 @@ swipables.forEach((swipable, i) => {
     console.log()
     // swipable.style.transform = `rotateY(${i * 8}deg)`
 
-    swipable.style.transform = `rotateY(-${i * 60}deg) translate3d(${i * 0}px, ${- i * 0}px, ${270}px)`
+    swipable.style.transform = `rotateY(${i * 60}deg) translate3d(${i * 0}px, ${- i * 0}px, ${270}px)`
 
 });
