@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <input class="slider" max="1" min="0" type="range" step="0.001" on>
     <div class="scene">
 
@@ -23,7 +24,13 @@
         </div>
     </div>
 
+    <div class="buttons">
+        <button onclick="handleClick(-1)">&orarr;</button>
+        <button onclick="handleClick(1)">&olarr;</button>
+    </div>
+
     <script type="module" src="index.js"></script>
+
 </body>
 
 </html>
