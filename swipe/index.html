@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="elements/card.js" defer></script>
 </head>
 
 <body>
@@ -15,12 +16,12 @@
     <div class="scene">
 
         <div class="swipable-container">
-            <div class="swipable">Hallo</div>
-            <div class="swipable">Velo</div>
-            <div class="swipable">Juhuuu</div>
-            <div class="swipable">Huiii!!</div>
-            <div class="swipable">ok?</div>
-            <div class="swipable">alles klar</div>
+            <le-card></le-card>
+            <le-card></le-card>
+            <le-card></le-card>
+            <le-card></le-card>
+            <le-card></le-card>
+            <le-card></le-card>
         </div>
     </div>
 
@@ -28,6 +29,8 @@
         <button onclick="handleClick(-1)">&orarr;</button>
         <button onclick="handleClick(1)">&olarr;</button>
     </div>
+
+    <card></card>
 
     <script type="module" src="index.js"></script>
 
