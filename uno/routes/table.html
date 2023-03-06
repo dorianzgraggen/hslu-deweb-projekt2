@@ -7,12 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/style.css">
   <title>Table</title>
+
+  <style>
+    .tabletop {
+      background-image: url("/static/pattern.png");
+      background-size: 10vh;
+      background-position: center;
+      opacity: 0.1;
+    }
+
+    .vignette {
+      background-image: radial-gradient(#0000, #000000e3);
+    }
+
+  </style>
 </head>
 
 <body>
-  <h1>Table</h1>
 
-
+  <div class="tabletop full-size"></div>
+  <div class="vignette full-size"></div>
+  <div class="full-size">
+    <h1>Table</h1>
+  </div>
 </body>
 
 <script>
