@@ -1,5 +1,3 @@
-const BASE_PATH = './public';
-
 const server = Deno.listen({ port: 7777 });
 console.log(`HTTP webserver running. Access it at http://localhost:7777/`);
 
@@ -19,20 +17,13 @@ async function handle(conn: Deno.Conn) {
       return;
     }
 
-    console.log('sub', url.pathname.substring(0, 7));
-
     // serve files in ./public
     if (url.pathname.substring(0, 7) === '/static') {
-      console.log('lol');
-
       const filePath = '.' + url.pathname;
-      console.log('path: ' + filePath);
       let fileSize = 0;
 
       try {
-        console.log('try');
         fileSize = (await Deno.stat(filePath)).size;
-        console.log(fileSize);
       } catch (e) {
         if (e instanceof Deno.errors.NotFound) {
           requestEvent.respondWith(new Response(null, { status: 404 }));
@@ -43,7 +34,6 @@ async function handle(conn: Deno.Conn) {
 
       // TODO: cache list of files
       const body = (await Deno.open(filePath)).readable;
-      console.log('bodied');
       requestEvent.respondWith(
         new Response(body, {
           headers: { 'content-length': fileSize.toString() },
