@@ -78,7 +78,6 @@ await Promise.all([
   (async function () {
     const watcher = Deno.watchFs('.');
     for await (const event of watcher) {
-      console.log('>>>> event', event);
       event.paths.forEach((path) => {
         ['css', 'js', 'html'].forEach((ending) => {
           if (path.endsWith('.' + ending)) {
