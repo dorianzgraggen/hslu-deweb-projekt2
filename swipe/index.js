@@ -1,9 +1,15 @@
 const container = document.querySelector(".swipable-container")
-const swipables = document.querySelectorAll(".swipable");
+let swipables = document.querySelectorAll(".swipable");
 const slider = document.querySelector(".slider");
 let currentRotation = 0;
 
 
+window.addEventListener("cards-fetch", e => {
+    swipables = document.querySelectorAll(".swipable");
+    setRotation();
+}
+
+)
 console.log(swipables)
 
 container.style.transform = `rotateY(${0}deg) translate3d(${0}px, ${0}px, ${-270}px)`
