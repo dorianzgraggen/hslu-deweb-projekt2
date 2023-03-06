@@ -11,21 +11,50 @@
     .logo {
       display: flex;
       vertical-align: middle;
+      /* background-color: red; */
+      /* filter: invert(1) opacity(0.9) */
+      mask-image: url(/static/logo.svg);
+      mask-position: center;
+      mask-size: calc(30vh + 18vw);
+      mask-repeat: no-repeat;
+
+      background-size: cover;
+
+      background-image: url(/static/paper.jpg), radial-gradient(hsla(0, 60%, 33%, 0.719), hsl(240, 4%, 21%));
+      background-image: url(/static/paper.jpg), radial-gradient(hsl(0, 19.7%, 25.9%), hsl(240, 4%, 21%));
+      background-blend-mode: color-dodge;
 
     }
 
-    .logo>img {
-      width: 30vh;
+    .logo-shadow {
+      mask-position: 20% 20%;
+      mask-position: 48% 51%;
+      background-image: url(/static/paper.jpg), radial-gradient(hsl(0, 15.5%, 19%), hsl(240, 4%, 21%));
+    }
+
+    .logo>div {
+      width: calc(20vh + 10vw);
       margin: 0 auto;
+      height: 30vh;
+
+    }
+
+    .bg {
+      background-image: url(/static/paper.jpg);
+      background-image: url(/static/paper.jpg), radial-gradient(hsl(0, 0%, 32%), hsl(240, 4%, 21%));
+      background-size: cover;
+      /* opacity: 0.2; */
+      /* background-color: red; */
+      background-blend-mode: color-dodge;
     }
 
   </style>
 </head>
 
 <body>
-  <div class="logo full-size">
-    <img src="/static/logo.svg">
-  </div>
+  <div class="bg full-size"></div>
+  <div class="logo logo-shadow full-size"></div>
+  <div class="logo full-size"></div>
   <ul>
     <li><a href="/table">Table</a></li>
     <li><a href="/play">Play</a></li>
