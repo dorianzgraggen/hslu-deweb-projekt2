@@ -1,71 +1,24 @@
-const server = Deno.listen({ port: 7777 });
-console.log(`HTTP webserver running. Access it at http://localhost:7777/`);
+import { serve } from 'https://deno.land/std@0.178.0/http/server.ts';
+import { serveDir } from 'https://deno.land/std@0.178.0/http/file_server.ts';
 
-for await (const conn of server) {
-  handle(conn);
-}
+const port = 9999;
 
-async function handle(conn: Deno.Conn) {
-  const httpConn = Deno.serveHttp(conn);
+const handler = async (request: Request): Promise<Response> => {
+  const url = new URL(request.url);
 
-  for await (const requestEvent of httpConn) {
-    const url = new URL(requestEvent.request.url);
-
-    // handle WebSocket connection
-    if (url.pathname === '/ws') {
-      await requestEvent.respondWith(handleWebsocketReq(requestEvent.request));
-      return;
-    }
-
-    // serve files in ./public
-    if (url.pathname.substring(0, 7) === '/static') {
-      const filePath = '.' + url.pathname;
-      let fileSize = 0;
-
-      try {
-        fileSize = (await Deno.stat(filePath)).size;
-      } catch (e) {
-        if (e instanceof Deno.errors.NotFound) {
-          requestEvent.respondWith(new Response(null, { status: 404 }));
-        }
-
-        requestEvent.respondWith(new Response(null, { status: 500 }));
-      }
-
-      // TODO: cache list of files
-      const body = (await Deno.open(filePath)).readable;
-      requestEvent.respondWith(
-        new Response(body, {
-          headers: { 'content-length': fileSize.toString() },
-        })
-      );
-    }
-
-    // serve html file if pathname is valid
-    try {
-      let pathname = url.pathname;
-      if (pathname === '/') {
-        pathname = '/index';
-      }
-
-      // TODO: cache html files on startup
-      const html = await Deno.readTextFile(`./routes${pathname}.html`);
-
-      const body = new TextEncoder().encode(html);
-      requestEvent.respondWith(
-        new Response(body, {
-          status: 200,
-        })
-      );
-    } catch (error) {
-      requestEvent.respondWith(
-        new Response(error, {
-          status: 404,
-        })
-      );
-    }
+  if (url.pathname === '/ws') {
+    return handleWebsocketReq(request);
   }
-}
+
+  if (url.pathname.startsWith('/static')) {
+    return serveDir(request);
+  }
+
+  return await handleWebpageReq(url);
+};
+
+console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
+await serve(handler, { port });
 
 function handleWebsocketReq(req: Request): Response {
   const upgrade = req.headers.get('upgrade') || '';
@@ -81,4 +34,25 @@ function handleWebsocketReq(req: Request): Response {
   socket.onerror = (e) => console.log('socket errored:', e);
   socket.onclose = () => console.log('socket closed');
   return response;
+}
+
+async function handleWebpageReq(url: URL): Promise<Response> {
+  try {
+    let pathname = url.pathname;
+    if (pathname === '/') {
+      pathname = '/index';
+    }
+
+    // TODO: cache html files on startup
+    const html = await Deno.readTextFile(`./routes${pathname}.html`);
+    const body = new TextEncoder().encode(html);
+
+    return new Response(body, {
+      status: 200,
+    });
+  } catch (error) {
+    return new Response(error, {
+      status: 404,
+    });
+  }
 }
