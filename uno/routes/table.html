@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Table</title>
+</head>
+
+<body>
+  <h1>Table</h1>
+
+
+</body>
+
+<script>
+
+  const socket = new WebSocket('ws://localhost:9999/ws');
+
+  socket.addEventListener('open', (event) => {
+    socket.send('Table');
+  });
+
+  socket.addEventListener('message', (event) => {
+    console.log('Message from server:\n' + event.data);
+  });
+</script>
+
+</html>
