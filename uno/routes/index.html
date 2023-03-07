@@ -30,11 +30,31 @@
       background-blend-mode: color-dodge;
       mask-position: 50% 50%;
       transition-duration: 0.13s;
+      animation: 5s infinite color-go-brrr;
+
+      animation-play-state: paused;
       /* background-color: blue; */
     }
 
+    @keyframes color-go-brrr {
+      0% {
+        filter: hue-rotate(0deg)
+      }
+
+      100% {
+        filter: hue-rotate(360deg)
+      }
+    }
+
+
+
     .logo-hover .logo-main {
-      mask-position: 50.5% 49.75%;
+      animation-play-state: running;
+    }
+
+
+    .logo-hover .logo-shadow {
+      animation-play-state: running;
     }
 
     .logo-down .logo-main {
@@ -135,7 +155,7 @@
     const numbers_container = document.getElementById("numbers");
 
     for (let i = 0; i < 12; i++) {
-      // continue;
+      continue;
       const n = i % 10;
 
       const child = document.createElement("span")
