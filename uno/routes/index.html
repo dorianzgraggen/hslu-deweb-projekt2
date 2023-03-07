@@ -181,6 +181,10 @@
   <script src="/static/watcher.js"></script>
   <script src="/static/index/hoverer.js"></script>
   <script src="/static/ui.js"></script>
+  <script>
+    const id = new URLSearchParams(window.location.search).get("state") || "index";
+    setState(id)
+  </script>
   <!-- <script src="/static/index/numbers.js"></script> -->
 </body>
 
