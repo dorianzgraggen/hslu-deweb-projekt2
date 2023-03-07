@@ -1,5 +1,6 @@
 import { serve } from 'https://deno.land/std@0.178.0/http/server.ts';
 import { serveDir } from 'https://deno.land/std@0.178.0/http/file_server.ts';
+import { handleWebsocketReq } from './websocket.ts';
 
 const port = 9999;
 
@@ -30,22 +31,6 @@ const handler = async (request: Request): Promise<Response> => {
 
   return await handleWebpageReq(url);
 };
-
-function handleWebsocketReq(req: Request): Response {
-  const upgrade = req.headers.get('upgrade') || '';
-  if (upgrade.toLowerCase() != 'websocket') {
-    return new Response("request isn't trying to upgrade to websocket.");
-  }
-  const { socket, response } = Deno.upgradeWebSocket(req);
-  socket.onopen = () => console.log('socket opened');
-  socket.onmessage = (e) => {
-    console.log('socket message:', e.data);
-    socket.send(new Date().toString());
-  };
-  socket.onerror = (e) => console.log('socket errored:', e);
-  socket.onclose = () => console.log('socket closed');
-  return response;
-}
 
 async function handleWebpageReq(url: URL): Promise<Response> {
   try {

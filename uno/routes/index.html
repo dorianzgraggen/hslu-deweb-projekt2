@@ -34,6 +34,8 @@
 
       animation-play-state: paused;
       /* background-color: blue; */
+
+
     }
 
     @keyframes color-go-brrr {
@@ -47,6 +49,16 @@
     }
 
 
+    [q-top] .logo-main {
+      mask-size: calc(10vh + 6vw);
+      mask-position: 50% 1%;
+    }
+
+
+    [q-top] .logo-shadow {
+      mask-size: calc(10vh + 6vw);
+      mask-position: 49.8% 1.25%;
+    }
 
     .logo-hover .logo-main {
       animation-play-state: running;
@@ -75,12 +87,15 @@
     }
 
     .bg {
-      background-image: url(/static/paper.jpg);
+      /* background-image: url(/static/paper.jpg); */
       background-image: url(/static/paper.jpg), radial-gradient(hsl(0, 0%, 32%), hsl(240, 4%, 21%));
       background-size: cover;
       /* opacity: 0.2; */
       /* background-color: red; */
       background-blend-mode: color-dodge;
+
+      background-position: 0vw 0vh;
+      background-size: 100vw;
     }
 
     #numbers {
@@ -105,25 +120,67 @@
     .hoverer {
       /* border: 2px solid cadetblue; */
       width: calc(30vh + 18vw);
-      height: calc(0.38 * (30vh + 18vw))
+      height: calc(0.38 * (30vh + 18vw));
+      position: absolute;
+    }
+
+    [q-top] .hoverer {
+      /* border: 2px solid cadetblue; */
+      width: calc(10vh + 6vw);
+      top: 1.25%;
+      height: calc(0.13 * (30vh + 18vw));
+    }
+
+    #buttons {
+      position: absolute;
+      bottom: 10vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1%;
+      transition-duration: 0.3s;
+    }
+
+    #buttons button {
+      padding: 1% 4%;
+      font-size: 3vw;
+      background: none;
+      border: 4px solid #ff020238;
+      /* background-blend-mode: add; */
+      border-radius: 8px;
     }
 
   </style>
 </head>
 
 <body>
-  <div class="bg full-size"></div>
-  <div class="logo logo-shadow full-size"></div>
-  <div id="numbers" class="full-size"></div>
-  <div class="logo logo-main full-size"></div>
+  <div id="root">
+    <div id="bg" class="bg full-size"></div>
 
-  <div class="center full-size">
-    <div class="hoverer"></div>
+    <span id="logo">
+
+      <div class="logo logo-shadow full-size"></div>
+      <div class="logo logo-main full-size top"></div>
+      <div class="center full-size">
+        <div class="hoverer"></div>
+      </div>
+    </span>
+    <!-- <div id="numbers" class="full-size">
+    </div> -->
+
+
+    <div id="buttons" class="buttons">
+      <button onclick="setState('host')" class="host">
+        HOST
+      </button>
+      <button>JOIN</button>
+    </div>
   </div>
 
 
   <script src="/static/watcher.js"></script>
   <script src="/static/index/hoverer.js"></script>
+  <script src="/static/ui.js"></script>
   <!-- <script src="/static/index/numbers.js"></script> -->
 </body>
 
