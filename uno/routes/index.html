@@ -123,67 +123,8 @@
 
 
   <script src="/static/watcher.js"></script>
-  <script>
-    const hoverer = document.querySelector(".hoverer");
-
-    hoverer.onmouseenter = e => {
-      document.body.classList.add("logo-hover")
-      document.body.style.cursor = "pointer";
-    }
-
-    hoverer.onmouseleave = e => {
-      document.body.classList.remove("logo-hover")
-      document.body.style.cursor = "";
-    }
-
-    let time_down = 0;
-
-    hoverer.onmousedown = e => {
-      time_down = Date.now();
-      document.body.classList.add("logo-down")
-    }
-
-    document.body.onmouseup = e => {
-      setTimeout(() => {
-        document.body.classList.remove("logo-down")
-      }, Math.max(0, time_down - Date.now() + 100));
-    }
-  </script>
-  <script>
-
-
-    const numbers_container = document.getElementById("numbers");
-
-    for (let i = 0; i < 12; i++) {
-      continue;
-      const n = i % 10;
-
-      const child = document.createElement("span")
-      child.innerText = n;
-
-      let s = Math.random() * Math.PI;
-
-      const x = Math.cos(s) * 120;
-      const y = Math.sin(s) * 100;
-
-      const rotation = Math.random() * 360;
-
-      child.animate(
-        [
-          { transform: `translate(${-x}vw, ${-y}vh) rotate(${rotation}deg)` },
-          { transform: `translate(${x}vw, ${y}vh) rotate(${rotation + 720}deg)` },
-        ], {
-        duration: 30000,
-        iterations: Infinity,
-        iterationStart: Math.random()
-      }
-      )
-
-      numbers_container.appendChild(child)
-    }
-
-
-  </script>
+  <script src="/static/index/hoverer.js"></script>
+  <!-- <script src="/static/index/numbers.js"></script> -->
 </body>
 
 </html>
