@@ -40,4 +40,8 @@ export class Card {
 
     return false;
   }
+
+  serialize(): string {
+    return JSON.stringify(this);
+  }
 }
