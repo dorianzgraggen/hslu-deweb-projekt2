@@ -1,10 +1,10 @@
-const Game = {
+export const Game = {
   hasToTake: 0,
 };
 
 type Color = 'none' | 'red' | 'blue' | 'green' | 'yellow';
 
-class Card {
+export class Card {
   color: Color;
   value: number;
   flip_direction = false;
@@ -22,7 +22,7 @@ class Card {
     this.to_take = to_take;
   }
 
-  canPutOn(other: Card): boolean {
+  canBePutOn(other: Card): boolean {
     if (Game.hasToTake > 0) {
       if (this.color == 'none' && this.to_take > 0) return true;
       if (this.color == other.color) {
@@ -31,6 +31,8 @@ class Card {
 
         return false;
       }
+
+      if (this.to_take == other.to_take) return true;
     }
 
     if (this.color == 'none') return true;
