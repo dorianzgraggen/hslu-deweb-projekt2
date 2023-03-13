@@ -1,13 +1,18 @@
 import { serve } from 'https://deno.land/std@0.178.0/http/server.ts';
 import { serveDir } from 'https://deno.land/std@0.178.0/http/file_server.ts';
 import { handleWebsocketReq } from './websocket.ts';
+import * as API from './api/_api.ts';
 
 const port = 9999;
 
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
 
-  if (url.pathname === '/api/file-changes') {
+  if (url.pathname.startsWith('/api')) {
+    return await API.handle(request);
+  }
+
+  if (url.pathname === '/file-changes') {
     const s = url.searchParams.get('s');
 
     if (s) {

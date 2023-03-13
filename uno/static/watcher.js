@@ -1,5 +1,5 @@
 setInterval(async () => {
-  const res = await fetch("/api/file-changes?s=" + encodeURIComponent(window.location.pathname));
+  const res = await fetch("/file-changes?s=" + encodeURIComponent(window.location.pathname));
   const txt = await res.text();
 
   if (txt === "1") {
