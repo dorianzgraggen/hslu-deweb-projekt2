@@ -27,7 +27,9 @@ function getName() {
   let adjective = adjectives[i_adjective];
   let noun = nouns[i_noun];
 
-  if (noun.startsWith('0')) {
+  if (adjective.endsWith('-')) {
+    adjective = adjective.slice(0, -1);
+  } else if (noun.startsWith('0')) {
     adjective += 'e';
   } else if (noun.startsWith('1')) {
     adjective += 'i';

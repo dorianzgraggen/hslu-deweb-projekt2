@@ -15,6 +15,9 @@ Löli
 Nuggi
 Töff
 Tüpflischisser
+Siech
+Schafseckl
+Brudi
 ===
 Dächlichappe
 Geiss
@@ -29,3 +32,4 @@ Guetzli
 Lavabo
 Luusmeitli
 Nastüechli
+Dreckskamel
