@@ -25,7 +25,7 @@ checkboard_lines.addEventListener("pointerup", e => {
 
 let start = 0;
 let previous = 0;
-let duration = 1000;
+let duration = 600;
 
 function startShockwave(time) {
   start = start || time;

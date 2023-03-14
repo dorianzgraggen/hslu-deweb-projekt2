@@ -52,7 +52,8 @@ body {
   position: absolute;
 
   --m: #d61f37;
-  --bg: rgba(255, 255, 255, 0);
+  --bg: #d61f3707;
+
   width: 100%;
   height: 100%;
   background-image:
@@ -68,7 +69,7 @@ body {
   position: absolute;
 
   --m: #d61f37;
-  --bg: rgba(255, 255, 255, 0);
+  --bg: #d61f3707;
 
   --t: -60%;
   --x: 0%;
