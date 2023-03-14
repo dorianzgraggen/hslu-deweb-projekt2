@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  height: 100%;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: gray;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  width: calc(0.5 * min(100vh, 100vw));
+  height: calc(0.8 * min(100vh, 100vw));
+  /* border: 2px solid red; */
+  background-color: #d61f37;
+  padding: 12px;
+
+}
+
+.checkboard {
+  background-color: hsl(257, 23%, 12%);
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    repeating-linear-gradient(180deg, hsl(257, 23%, 12%) 0%, #0020381c 2%), repeating-linear-gradient(135deg, hsl(257, 23%, 12%) 0%, hsl(257, 23%, 0%) 2%);
+  box-shadow: inset 1px 1px 7px #00000036;
+  border: 4px solid #d61f37;
+  border-bottom-color: #d61f37;
+  border-right-color: #d61f37;
+
+  position: relative;
+}
+
+.checkboard-lines {
+  position: absolute;
+
+  --m: #d61f37;
+  --bg: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(180deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%),
+    repeating-linear-gradient(135deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%);
+  mask-image: radial-gradient(circle, black 0%, rgba(0, 0, 0, 0.0) 33%);
+  mask-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.checkboard-shockwave {
+  position: absolute;
+
+  --m: #d61f37;
+  --bg: rgba(255, 255, 255, 0);
+
+  --t: -60%;
+  --x: 0%;
+  --y: 0%;
+
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(180deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%),
+    repeating-linear-gradient(135deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%);
+  mask-image: radial-gradient(circle at var(--x) var(--y), rgba(0, 0, 0, 0.0) calc(var(--t)), black calc(var(--t) + 33%), rgba(0, 0, 0, 0.0) calc(var(--t) + 66%));
+  -webkit-mask-image: radial-gradient(circle at var(--x) var(--y), rgba(0, 0, 0, 0.0) calc(var(--t)), black calc(var(--t) + 33%), rgba(0, 0, 0, 0.0) calc(var(--t) + 66%));
+  mask-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+
+  pointer-events: none;
+}
+
+
+
+.round {
+  border-radius: 12px;
+}

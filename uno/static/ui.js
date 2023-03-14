@@ -12,6 +12,11 @@ const states = {
     ["settings"],
     ["logo", "top"],
     ["qr"],
+  ],
+  join: [
+    ["bg"],
+    ["settings"],
+    ["logo", "top"],
   ]
 }
 
