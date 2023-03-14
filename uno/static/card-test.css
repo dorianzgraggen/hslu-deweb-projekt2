@@ -59,7 +59,7 @@ body {
   background-image:
     repeating-linear-gradient(180deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%),
     repeating-linear-gradient(135deg, var(--m) 0%, var(--bg) 0.1%, var(--bg) 1.9%, var(--m) 2%);
-  mask-image: radial-gradient(circle, black 0%, rgba(0, 0, 0, 0.0) 33%);
+  mask-image: radial-gradient(circle, black 0%, rgba(0, 0, 0, 0.0) 55%);
   mask-repeat: no-repeat;
   cursor: pointer;
   opacity: 0.6;
