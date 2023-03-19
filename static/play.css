@@ -49,3 +49,40 @@ aini-opponent[count="1"] .count {
 aini-opponent[count="2"] .count {
   color: yellow
 }
+
+aini-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 180px;
+
+  margin-left: -60px;
+  margin-top: -90px;
+
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.253);
+
+  color: black;
+  font-size: 120px;
+  text-align: center;
+
+  transform: translate(50vw, 50vh) scale(1.2) rotate(0deg);
+}
+
+aini-card[color="red"] {
+  background-color: red;
+}
+
+aini-card[color="green"] {
+  background-color: green;
+}
+
+aini-card[color="blue"] {
+  background-color: blue;
+}
+
+aini-card[color="yellow"] {
+  background-color: yellow;
+}
