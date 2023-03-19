@@ -34,6 +34,19 @@ const handler = async (request: Request): Promise<Response> => {
     return serveDir(request);
   }
 
+  if (url.pathname.startsWith('/elements')) {
+    let js = await Deno.readTextFile('.' + url.pathname);
+    const html = await Deno.readTextFile(
+      '.' + url.pathname.replace('js', 'html')
+    );
+
+    js = js.replace('__AINI_HTML', `\`${html}\``);
+
+    return new Response(js, {
+      headers: new Headers({ 'Content-Type': 'text/javascript' }),
+    });
+  }
+
   return await handleWebpageReq(url);
 };
 

@@ -7,10 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/style.css">
   <title>Play</title>
+  <script type="module" src="/elements/opponent.js" defer></script>
 </head>
 
 <body>
-  <h1>Play</h1>
+  <div class="opponents">
+    <aini-opponent name="chillige Öpfel" count=7></aini-opponent>
+    <aini-opponent name="würzige Chüngel" count=1></aini-opponent>
+    <aini-opponent name="gwundrigi Dächlichappe" count=4></aini-opponent>
+    <aini-opponent name="fätzige Chaste" count=2></aini-opponent>
+    <aini-opponent name="epischi Gigampfi" count=12></aini-opponent>
+  </div>
 
 </body>
 
@@ -28,5 +35,7 @@
     console.log('Message from server:\n' + event.data);
   });
 </script>
+
+<script src="/static/watcher.js"></script>
 
 </html>
