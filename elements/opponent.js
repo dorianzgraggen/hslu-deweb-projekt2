@@ -18,3 +18,15 @@ class Opponent extends HTMLElement {
 }
 
 window.customElements.define('aini-opponent', Opponent);
+
+
+window.handleOpponentCountClick = (element) => {
+  console.log(element)
+  element.animate([
+    { transform: "rotateY(0deg)" },
+    { transform: "rotateY(360deg)" },
+  ], {
+    duration: 444,
+    iterations: 1
+  })
+}
