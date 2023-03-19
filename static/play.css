@@ -1,0 +1,51 @@
+body {
+  background-color: #111111;
+}
+
+.opponents {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+aini-opponent {
+  margin-top: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  /* border: 1px solid red; */
+}
+
+aini-opponent .name {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+aini-opponent .count {
+  background-color: #000000aa;
+  text-align: center;
+  width: fit-content;
+  padding: 17px 0;
+  width: 42px;
+
+  border: 2px solid #ffffff22;
+  border-radius: 6px;
+  font-weight: bold;
+  content: "32";
+}
+
+aini-opponent[count="1"] .count {
+  color: red
+}
+
+aini-opponent[count="2"] .count {
+  color: yellow
+}
