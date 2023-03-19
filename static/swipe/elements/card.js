@@ -32,7 +32,7 @@ window.customElements.define('le-card', Card);
 
 async function getHtml() {
     try {
-        const res = await fetch("elements/card.html")
+        const res = await fetch("/static/swipe/elements/card.html")
         const txt = await res.text();
         return txt;
     } catch (error) {
