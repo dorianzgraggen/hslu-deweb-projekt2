@@ -21,6 +21,7 @@ Brudi
 Glünggifrosch
 ===
 Dächlichappe
+Schoggi
 Geiss
 Gigampfi
 ===
@@ -40,7 +41,6 @@ Fondue
 Kafi
 Znüni
 Zvieri
-Schoggi
 Fondue
 Raclette
 Rösti
