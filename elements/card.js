@@ -2,28 +2,47 @@
 
 const html = __AINI_HTML;
 
-class Card extends HTMLElement {
-  transform = "translate(50vw, 50vh) scale(1.2) rotate(0deg)";
+export class Card extends HTMLElement {
+  transform = "translate(50vw, 50vh) scale(1) rotate(0deg)";
 
-  constructor() {
+  constructor(value, color) {
     super()
-    // this.style.transform = this.transform;
-    this.render(this.getAttribute("value"), this.getAttribute("color"));
+
+    this.value = value || this.getAttribute("value");
+    this.color = color || this.getAttribute("color");
+
+    this.setAttribute("value", this.value);
+    this.setAttribute("color", this.color);
+
+    this.render();
     this.setRotation(Math.random() * 360);
   }
 
-  render(value, color) {
+  render() {
     let parsed = html;
-    parsed = parsed.replaceAll("{value}", value)
+    parsed = parsed.replaceAll("{value}", this.value)
     this.innerHTML = parsed;
   }
 
   setRotation(rotation) {
-    console.log(this.transform.split("rotate"))
     let t = `${this.transform.split("rotate")[0]}rotate(${rotation}deg)`;
-    console.log(t);
     this.style.transform = t;
+  }
+
+  fadeIn(x = 0, y = 0) {
+    const rotation = Math.random() * 360;
+    this.animate([
+      { transform: `translate(${x * 100}vw, ${y * 100}vh) scale(0) rotate(${rotation - lerp(-60, 60, Math.random())}deg)` },
+      { transform: `translate(50vw, 50vh) scale(1) rotate(${rotation}deg)` }
+    ], {
+      duration: 300,
+      fill: "forwards"
+    })
   }
 }
 
 window.customElements.define('aini-card', Card);
+
+function lerp(a, b, t) {
+  return a * (1 - t) + b * t
+}
