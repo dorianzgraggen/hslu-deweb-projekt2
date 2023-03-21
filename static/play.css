@@ -68,26 +68,50 @@ aini-card {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.253);
 
   color: black;
-  font-size: 120px;
+  font-size: 105px;
   text-align: center;
 
   transform: translate(50vw, 50vh) scale(1.2) rotate(0deg);
 
   user-select: none;
+
+  display: flex;
 }
 
-aini-card[color="red"] {
-  background-color: red;
+
+aini-card .number {
+  color: white;
+  text-shadow: -2px 2px var(--dark), -2px -2px var(--dark), 2px -2px var(--dark), 2px 2px var(--dark);
 }
 
-aini-card[color="green"] {
-  background-color: green;
+
+aini-card>div {
+  border-radius: 8px;
+  /* border: 0px solid var(--dark); */
+  background-color: var(--light);
+
+  margin: 6px;
+  flex-grow: 1;
 }
 
-aini-card[color="blue"] {
-  background-color: blue;
+aini-card[color="red"]>div {
+  --light: red;
+  --dark: rgb(167, 0, 0);
 }
 
-aini-card[color="yellow"] {
-  background-color: yellow;
+aini-card[color="green"]>div {
+  --light: green;
+  --dark: rgb(0, 104, 0);
+
+}
+
+aini-card[color="blue"]>div {
+  --light: blue;
+  --dark: rgb(0, 0, 168);
+
+}
+
+aini-card[color="yellow"]>div {
+  --light: rgb(255, 217, 0);
+  --dark: rgb(240, 176, 0);
 }
