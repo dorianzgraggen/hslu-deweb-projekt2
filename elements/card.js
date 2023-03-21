@@ -31,9 +31,13 @@ export class Card extends HTMLElement {
 
   fadeIn(x = 0, y = 0) {
     const rotation = Math.random() * 360;
+    // TODO: create a better that is dependent on both width and height
+    const offset_x = (Math.random() - 0.5) * 7;
+    const offset_y = (Math.random() - 0.5) * 7;
+
     this.animate([
       { transform: `translate(${x * 100}vw, ${y * 100}vh) scale(0) rotate(${rotation - lerp(-60, 60, Math.random())}deg)` },
-      { transform: `translate(50vw, 50vh) scale(1) rotate(${rotation}deg)` }
+      { transform: `translate(calc(50vw + ${offset_x}vw), calc(50vh + ${offset_y}vw)) scale(1) rotate(${rotation}deg)` }
     ], {
       duration: 300,
       fill: "forwards"
