@@ -9,17 +9,20 @@ export class Card {
   value: number;
   flip_direction = false;
   to_take: number;
+  wish: boolean;
 
   constructor(
     color: Color,
     value: number,
     flip_direction: boolean,
-    to_take: number
+    to_take: number,
+    wish: boolean
   ) {
     this.color = color;
     this.value = value;
     this.flip_direction = flip_direction;
     this.to_take = to_take;
+    this.wish = wish;
   }
 
   canBePutOn(other: Card): boolean {
