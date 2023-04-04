@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>host</title>
+</head>
+
+<body>
+
+
+  <div id="code">...</div>
+  <button id="start">START</button>
+
+
+  <h2>Spieler</h2>
+  <div id="players">
+
+  </div>
+  <script>
+
+    run();
+
+    let players;
+
+    async function run() {
+      const start_button = document.querySelector("#start");
+      const code_placeholder = document.querySelector("#code");
+      const players = document.querySelector("#players");
+
+      try {
+        const res = await fetch("/api/create-game");
+        const { code, secret } = await res.json();
+        console.log(code, secret)
+
+
+
+        code_placeholder.innerHTML = code;
+        start_button.addEventListener("click", e => {
+          window.location = "/host?code=" + code;
+        })
+
+        const socket = new WebSocket('ws://localhost:9999/ws');
+
+        const id = Math.random();
+
+        socket.addEventListener('open', (event) => {
+          socket.send(JSON.stringify({
+            type: "join_list",
+            code,
+            secret
+          }));
+        });
+
+        localStorage.setItem("code", code);
+        localStorage.setItem("secret", secret);
+
+        socket.addEventListener('message', (event) => {
+          console.log('Message from server:\n' + event.data);
+        });
+
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+
+  </script>
+
+</body>
+
+
+<script src="/static/watcher.js"></script>
+
+</html>

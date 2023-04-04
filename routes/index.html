@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>äini</title>
+</head>
+
+<body>
+
+  <div style="margin-bottom: 30px;">
+
+    <button id="host">HOST</button>
+  </div>
+
+
+  <div>
+    <input type="string" id="join_code">
+    <button id="join">JOIN</button>
+
+  </div>
+
+  <script>
+
+    const host_button = document.querySelector("#host");
+    const join_button = document.querySelector("#join");
+    const code_input = document.querySelector("#join_code");
+
+    host_button.addEventListener("click", async () => {
+      console.log("click");
+
+      window.location = "/join-list";
+    })
+
+    join_button.addEventListener("click", async () => {
+      const code = code_input.value;
+      // window.location = "/join"
+    })
+
+  </script>
+
+</body>
+
+
+<script src="/static/watcher.js"></script>
+
+</html>
