@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/static/ui.css">
+</head>
+
+<body>
+  <div id="ui">
+    <div is="color-bar"></div>
+    <h1>äini!</h1>
+
+    <div class="screen" id="screen-main">
+      <p>Ein Uno-Abklatsch mit <button onclick="setUi('rules')">besseren Regeln</button>.</p>
+      <button onclick="setUi('join-by-code')">join</button>
+      <button onclick="setUi('choose-host-mode')">host</button>
+    </div>
+
+    <div class="screen" id="screen-rules">
+      <p>Das Ziel ist es, alle Karten loszuwerden:</p>
+      <button onclick="setUi('main')">zuruck</button>
+    </div>
+
+    <div class="screen" id="screen-join-by-code">
+      <input type="text" />
+      <button onclick="setUi('choose-username')">beitreten</button>
+    </div>
+
+    <div class="screen" id="screen-choose-username">
+      <button onclick="setUi('play')">chillige Öpfel</button>
+      <button onclick="setUi('play')">chillige Öpfel</button>
+      <button onclick="setUi('play')">chillige Öpfel</button>
+    </div>
+
+    <div class="screen" id="screen-play">
+      <p>am spielen</p>
+    </div>
+
+
+    <div class="screen" id="screen-choose-host-mode">
+      <button onclick="setUi('player-list')">hosten & mitspielen</button>
+      <button onclick="setUi('player-list')">nur hosten</button>
+    </div>
+
+    <div class="screen" id="screen-player-list">
+      <p>Spielerliste</p>
+      <button onclick="setUi('play  ')">los gehts</button>
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import { setUi } from "/static/ui2.js"
+    window.setUi = setUi;
+
+  </script>
+  <script src="/static/watcher.js"></script>
+  <script src="/static/game.js" type="module"></script>
+
+</body>
+
+</html>

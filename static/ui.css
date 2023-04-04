@@ -1,0 +1,49 @@
+.hidden {
+  /* display: none; */
+  animation: slideaway 200ms;
+  animation-fill-mode: forwards;
+  /* opacity: 0; */
+  user-select: none;
+  pointer-events: none;
+}
+
+.visible {
+  animation: slidein 200ms;
+  animation-fill-mode: forwards;
+  pointer-events: all;
+  user-select: none;
+}
+
+
+
+.screen {
+  opacity: 1;
+  transition-duration: 1s;
+  transition: opacity 0.2s;
+  position: absolute;
+}
+
+
+@keyframes slideaway {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
