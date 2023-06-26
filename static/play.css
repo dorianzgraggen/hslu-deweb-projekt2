@@ -115,3 +115,11 @@ aini-card[color="yellow"]>div {
   --light: rgb(255, 217, 0);
   --dark: rgb(240, 176, 0);
 }
+
+aini-card[wish="true"] > div {
+  background-image: radial-gradient(white 00%, #fff0 80%), conic-gradient(red, blue, green, yellow, red);
+}
+
+aini-card[wish="true"] .number {
+  display: none;
+}

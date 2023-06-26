@@ -5,14 +5,20 @@ const html = __AINI_HTML;
 export class Card extends HTMLElement {
   transform = "translate(50vw, 50vh) scale(1) rotate(0deg)";
 
-  constructor(value, color) {
+  constructor(value, color, flip_direction, to_take, wish) {
     super()
 
     this.value = value || this.getAttribute("value");
     this.color = color || this.getAttribute("color");
+    this.flip_direction = flip_direction || this.getAttribute("flip_direction");
+    this.to_take = to_take || this.getAttribute("to_take");
+    this.wish = wish || this.getAttribute("wish");
 
     this.setAttribute("value", this.value);
     this.setAttribute("color", this.color);
+    this.setAttribute("flip_direction", this.flip_direction);
+    this.setAttribute("to_take", this.to_take);
+    this.setAttribute("wish", this.wish);
 
     this.render();
     this.setRotation(Math.random() * 360);
