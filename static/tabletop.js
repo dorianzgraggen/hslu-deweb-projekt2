@@ -37,6 +37,16 @@ import { Opponent } from '../elements/opponent.js';
 //   return ["red", "blue", "yellow", "green"][Math.floor(Math.random() * 4)];
 // }
 
+let voices = new Array();
+(async () => {
+  try {
+    const resp = await fetch("/api/voices");
+    voices = await resp.json()
+  } catch (error) {
+    console.error(error);
+  }
+})();
+
 const socket = new WebSocket('ws://localhost:9999/ws');
 
 const id = Math.random();
@@ -122,6 +132,15 @@ socket.addEventListener('message', (message) => {
 
       
       elements.cards.append(card);
+      break;
+    }
+
+    case "aini": {
+      console.log(voices)
+      const voice = voices[Math.floor(Math.random() * voices.length)];
+      const audio = new Audio('/static/sounds/voices/' + voice);
+      audio.play();
+      break;
     }
 
     default:

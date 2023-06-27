@@ -143,3 +143,9 @@ function setReady(name) {
     })
   );
 }
+
+
+document.querySelector("h1").addEventListener("click", e => {
+  console.log(socket)
+  socket.send(JSON.stringify({type: "aini", code: game_code}));
+})

@@ -85,6 +85,13 @@ export function handleWebsocketReq(req: Request): Response {
           break;
         }
 
+        case 'aini': {
+          const game = game_map.get(parsed_message.code);
+          console.log('aini', game);
+          game?.aini();
+          break;
+        }
+
         default:
           break;
       }

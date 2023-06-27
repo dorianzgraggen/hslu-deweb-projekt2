@@ -114,6 +114,11 @@ export class Game {
       })
     );
   }
+
+  public aini() {
+    console.log('aini');
+    this.host?.send(JSON.stringify({ type: 'aini' }));
+  }
 }
 
 export class Player {
