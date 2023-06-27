@@ -102,6 +102,22 @@ socket.addEventListener('message', (message) => {
     case "new_player_card": {
       const {value, color, flip_direction, to_take, wish} = data.card;
       const card = new Card(value, color, flip_direction, to_take, wish);
+//     new_card.fadeIn(e.clientX / window.innerWidth, e.clientY / window.innerHeight);
+
+      const player = Array.from(document.querySelectorAll('aini-opponent')).find(p => p.name == data.player_name);
+
+      Array.from(document.querySelectorAll('aini-opponent')).forEach(p => {
+        console.log(p.name);
+      })
+      console.log(Array.from(document.querySelectorAll('aini-opponent')));
+      console.log("player", player) 
+      
+      const count_element = player.querySelector(".count");
+      count_element.innerText = Number(count_element.innerText) - 1;
+      
+      card.fadeIn(count_element.offsetLeft / window.innerWidth, count_element.offsetTop / window.innerHeight);
+
+      
       elements.cards.append(card);
     }
 

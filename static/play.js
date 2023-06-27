@@ -11,12 +11,14 @@ const elements = {
   hand: document.getElementById('hand'),
 };
 
+const player_name = 'a' + Math.random();
+
 socket.addEventListener('open', (event) => {
   socket.send(
     JSON.stringify({
       type: 'new_player',
       code: game_code,
-      player_name: 'a' + Math.random(),
+      player_name,
     })
   );
 });
@@ -62,6 +64,7 @@ function onCardClick(e) {
     JSON.stringify({
       type: 'played_card',
       code: game_code,
+      player_name,
       card: {
         value,
         color,

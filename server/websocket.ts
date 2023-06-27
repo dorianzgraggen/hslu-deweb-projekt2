@@ -75,7 +75,7 @@ export function handleWebsocketReq(req: Request): Response {
             parsed_message.card;
 
           const card = new Card(color, value, flip_direction, to_take, wish);
-          game?.playCard(card);
+          game?.playCard(card, parsed_message.player_name);
           break;
         }
 

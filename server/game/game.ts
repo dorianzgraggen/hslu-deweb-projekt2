@@ -38,8 +38,8 @@ export class Game {
     this.sendToAll({ type: 'first_card', start_card });
   }
 
-  public playCard(card: Card) {
-    this.sendToHost({ type: 'new_player_card', card });
+  public playCard(card: Card, player_name: string) {
+    this.sendToHost({ type: 'new_player_card', card, player_name });
     this.nextPlayer();
   }
 
