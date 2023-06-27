@@ -58,6 +58,7 @@ const elements = {
   opponents: document.querySelector('.opponents'),
   start_button: document.getElementById("start-btn"),
   cards: document.querySelector(".cards"),
+  start_screen: document.querySelector(".start-screen"),
 };
 
 elements.start_button.addEventListener("click", e => {
@@ -67,8 +68,7 @@ elements.start_button.addEventListener("click", e => {
       code: game_code
     })
   )
-  elements.start_button.style.display = "none";
-  elements.game_code.style.display = "none";
+  elements.start_screen.style.display = "none";
 })
 
 socket.addEventListener('open', (event) => {
@@ -82,11 +82,14 @@ socket.addEventListener('open', (event) => {
   );
 });
 
+let players = 0;
+
 socket.addEventListener('message', (message) => {
   console.log(message);
   const data = JSON.parse(message.data);
 
   console.log(data);
+
 
   switch (data.type) {
     case 'game_code': {
@@ -99,6 +102,12 @@ socket.addEventListener('message', (message) => {
     case 'player_joined': {
       const opponent = new Opponent(data.player_name, data.player_cards);
       elements.opponents.append(opponent);
+
+      players++;
+      if (players > 1) {
+        console.log("letsgo")
+        elements.start_button.disabled = false;
+      }
       break;
     }
 

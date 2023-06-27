@@ -10,10 +10,9 @@
   font-weight: normal;
 }
 
-
 body {
   background-color: #111111;
-  background-color: #0C2963;
+  background-color: #0c2963;
   font-family: Inter;
 }
 
@@ -21,6 +20,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
+  height: 110px;
 }
 
 aini-opponent {
@@ -55,17 +55,17 @@ aini-opponent .count {
   border: 2px solid #ffffff22;
   border-radius: 6px;
   font-weight: bold;
-  content: "32";
+  content: '32';
 
   cursor: pointer;
 }
 
-aini-opponent[count="1"] .count {
-  color: red
+aini-opponent[count='1'] .count {
+  color: red;
 }
 
-aini-opponent[count="2"] .count {
-  color: yellow
+aini-opponent[count='2'] .count {
+  color: yellow;
 }
 
 aini-card {
@@ -93,14 +93,13 @@ aini-card {
   display: flex;
 }
 
-
 aini-card .number {
   color: white;
-  text-shadow: -2px 2px var(--dark), -2px -2px var(--dark), 2px -2px var(--dark), 2px 2px var(--dark);
+  text-shadow: -2px 2px var(--dark), -2px -2px var(--dark), 2px -2px var(--dark),
+    2px 2px var(--dark);
 }
 
-
-aini-card>div {
+aini-card > div {
   border-radius: 8px;
   /* border: 0px solid var(--dark)  ; */
   background-color: var(--light);
@@ -109,63 +108,109 @@ aini-card>div {
   flex-grow: 1;
 
   display: flex;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 :root {
-  --red-light: #ED2121;
-  --red-dark: #AD0A0A;
-  --green-light: #00FF38;
-  --green-dark: #00C32B;
-  --blue-light: #169DFF;
-  --blue-dark: #0668AF;
-  --yellow-light: #FFE600;
-  --yellow-dark: #F3BE00;
+  --red-light: #ed2121;
+  --red-dark: #ad0a0a;
+  --green-light: #00ff38;
+  --green-dark: #00c32b;
+  --blue-light: #169dff;
+  --blue-dark: #0668af;
+  --yellow-light: #ffe600;
+  --yellow-dark: #f3be00;
 }
 
-aini-card[color="red"]>div {
+aini-card[color='red'] > div {
   --light: var(--red-light);
   --dark: var(--red-dark);
 }
 
-aini-card[color="green"]>div {
+aini-card[color='green'] > div {
   --light: var(--green-light);
   --dark: var(--green-dark);
-
 }
 
-aini-card[color="blue"]>div {
+aini-card[color='blue'] > div {
   --light: var(--blue-light);
   --dark: var(--blue-dark);
-
 }
 
-aini-card[color="yellow"]>div {
+aini-card[color='yellow'] > div {
   --light: var(--yellow-light);
   --dark: var(--yellow-dark);
 }
 
-aini-card[wish="true"] > div {
-  background-image: radial-gradient(white 00%, #fff0 80%), conic-gradient(var(--red-light), var(--blue-light), var(--green-light), var(--yellow-light), var(--red-light))
+aini-card[wish='true'] > div {
+  background-image: radial-gradient(white 00%, #fff0 80%),
+    conic-gradient(
+      var(--red-light),
+      var(--blue-light),
+      var(--green-light),
+      var(--yellow-light),
+      var(--red-light)
+    );
 }
 
-aini-card[wish="true"] .number {
+aini-card[wish='true'] .number {
   display: none;
-  --dark: #0C296388;
-
+  --dark: #0c296388;
 }
 
-aini-card[to_take="2"] .number,
-aini-card[to_take="3"] .number,
-aini-card[to_take="4"] .number{
+aini-card[to_take='2'] .number,
+aini-card[to_take='3'] .number,
+aini-card[to_take='4'] .number {
   font-size: 60px;
   margin-left: -8px;
   display: initial !important;
 }
 
-
 /* aini-card[to_take="2"] .number::before {
   font-size: 50px;
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='50' r='40' stroke='black' stroke-width='2' fill='red'/%3E%3Cpolyline points='20,20 40,25 60,40 80,120 120,140 200,180' style='fill:none;stroke:black;stroke-width:3'/%3E%3C/svg%3E ");
 } */
+
+.btn-std {
+  text-transform: uppercase;
+  background: white;
+  color: black;
+  border: 0;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Inter;
+  padding: 5px 20px;
+}
+
+.btn-std {
+  cursor: pointer;
+}
+
+.btn-std:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 220px);
+  justify-content: center;
+}
+
+.start-screen h1 {
+  font-size: 80px;
+}
+
+.start-screen #game_code {
+  display: none !important;
+}
+
+.start-screen img {
+  max-width: 70%;
+  width: 460px;
+  margin-bottom: 30px;
+}
