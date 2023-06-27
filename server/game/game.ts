@@ -59,7 +59,7 @@ export class Game {
   private nextPlayer() {
     this.current_player_index =
       (this.current_player_index + 1) % this.players.length;
-    this.currentPlayer.send({ type: 'your_turn' });
+    this.currentPlayer?.send({ type: 'your_turn' });
   }
 
   private sendToHost(data: any) {
@@ -84,7 +84,7 @@ export class Game {
 
   private async sendBeginSignal() {
     this.current_player_index = Math.floor(Math.random() * this.players.length);
-    this.currentPlayer.send({ type: 'your_turn' });
+    this.currentPlayer?.send({ type: 'your_turn' });
   }
 
   private get currentPlayer() {
