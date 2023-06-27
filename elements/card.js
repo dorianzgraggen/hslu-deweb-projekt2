@@ -8,10 +8,10 @@ export class Card extends HTMLElement {
   constructor(value, color, flip_direction, to_take, wish) {
     super()
 
-    this.value = value || this.getAttribute("value");
+    this.value = (typeof value === "undefined") ?  this.getAttribute("value") : value;
     this.color = color || this.getAttribute("color");
     this.flip_direction = flip_direction || this.getAttribute("flip_direction");
-    this.to_take = to_take || this.getAttribute("to_take");
+    this.to_take = (typeof to_take === "undefined") ? this.getAttribute("to_take") : to_take;
     this.wish = wish || this.getAttribute("wish");
 
     this.setAttribute("value", this.value);

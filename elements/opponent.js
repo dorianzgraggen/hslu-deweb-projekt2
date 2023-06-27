@@ -2,11 +2,14 @@
 
 const html = __AINI_HTML;
 
-class Opponent extends HTMLElement {
+export class Opponent extends HTMLElement {
 
-  constructor() {
+  constructor(name, count) {
     super()
-    this.render(this.getAttribute("name"), this.getAttribute("count"));
+
+    this.name = name || this.getAttribute("name")
+    this.count = count || this.getAttribute("count")
+    this.render(this.name, this.count);
   }
 
   render(name, count) {

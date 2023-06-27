@@ -7,46 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/play.css">
-  <title>Play</title>
-  <script type="module" src="/elements/opponent.js" defer></script>
-  <script type="module" src="/elements/card.js" defer></script>
-  <script type="module" src="/static/play.js" defer></script>
+  <title>Tabletop</title>
+  <!-- <script type="module" src="/elements/opponent.js" defer></script> -->
+  <!-- <script type="module" src="/elements/card.js" defer></script> -->
+  <script type="module" src="/static/tabletop.js" defer></script>
 </head>
 
 <body>
   <div class="opponents">
-    <aini-opponent name="chillige Öpfel" count=7></aini-opponent>
+    <!-- <aini-opponent name="chillige Öpfel" count=7></aini-opponent>
     <aini-opponent name="würzige Chüngel" count=1></aini-opponent>
     <aini-opponent name="gwundrigi Dächlichappe" count=4></aini-opponent>
     <aini-opponent name="fätzige Chaste" count=2></aini-opponent>
-    <aini-opponent name="epischi Gigampfi" count=12></aini-opponent>
+    <aini-opponent name="epischi Gigampfi" count=12></aini-opponent> -->
   </div>
 
   <div class="cards">
-    <aini-card value="2" color="red"></aini-card>
+    <!-- <aini-card value="2" color="red"></aini-card>
     <aini-card value="8" color="red"></aini-card>
     <aini-card value="7" color="blue"></aini-card>
     <aini-card value="0" color="blue"></aini-card>
     <aini-card value="1" color="blue"></aini-card>
     <aini-card value="3" color="green"></aini-card>
-    <aini-card value="7" color="yellow"></aini-card>
+    <aini-card value="7" color="yellow"></aini-card> -->
   </div>
+
+  <div id="game_code" style="display: none"></div>
+  <button id="start-btn">Start</button>
 </body>
-
-<script>
-
-  const socket = new WebSocket('ws://localhost:9999/ws');
-
-  const id = Math.random();
-
-  socket.addEventListener('open', (event) => {
-    // socket.send('Hallo, ich bins, de ' + id);
-  });
-
-  socket.addEventListener('message', (event) => {
-    console.log('Message from server:\n' + event.data);
-  });
-</script>
 
 <script src="/static/watcher.js"></script>
 

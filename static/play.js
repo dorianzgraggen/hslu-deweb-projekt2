@@ -1,38 +1,82 @@
-import { Card } from "../elements/card.js"
+import { Card } from '../elements/card.js';
+import { Opponent } from '../elements/opponent.js';
 
+const socket = new WebSocket('ws://localhost:9999/ws');
 
-console.log("card", Card);
-let i = 1;
+const id = Math.random();
 
-document.querySelectorAll("aini-opponent .name").forEach(name => {
-  name.addEventListener("click", e => {
-    console.log(e)
+let game_code = new URLSearchParams(window.location.search).get('code');
 
-    const cards = document.querySelector(".cards");
-    const value = "" + Math.floor(Math.random() * 10);
+const elements = {
+  hand: document.getElementById('hand'),
+};
 
-    const flip_direction = Math.random() > 0.9;
+socket.addEventListener('open', (event) => {
+  socket.send(
+    JSON.stringify({
+      type: 'new_player',
+      code: game_code,
+      player_name: 'a' + Math.random(),
+    })
+  );
+});
 
-    let to_take = 0;
-    if (Math.random() > 0.8) {
-      to_take = Math.ceil(Math.random * 3); // 1-4
+socket.addEventListener('message', (message) => {
+  console.log(message);
+  const data = JSON.parse(message.data);
+  console.log(data);
+  console.log(data.type);
+
+  switch (data.type) {
+    case 'start_cards': {
+      data.start_cards.forEach(
+        ({ value, color, flip_direction, to_take, wish }) => {
+          const card = new Card(value, color, flip_direction, to_take, wish);
+          elements.hand.append(card);
+        }
+      );
+      break;
     }
 
-    const wish = Math.random() > 0.9;
+    case 'your_turn': {
+      alert('your turn');
+      console.log("it's your turn");
 
-    if (wish) {
-      console.log("wish")
+      const cards = document.querySelectorAll('aini-card');
+      cards.forEach((card) => {
+        card.addEventListener('click', onCardClick);
+      });
+      break;
     }
 
-    const new_card = new Card(value, getRandomColor(), flip_direction, to_take, wish);
-    new_card.fadeIn(e.clientX / window.innerWidth, e.clientY / window.innerHeight);
+    default:
+      break;
+  }
+});
 
-    new_card.style.zIndex = i++;
+function onCardClick(e) {
+  console.log(e);
+  const card = e.target.closest('aini-card');
+  const { value, color, flip_direction, to_take, wish } = card;
+  socket.send(
+    JSON.stringify({
+      type: 'played_card',
+      code: game_code,
+      card: {
+        value,
+        color,
+        flip_direction,
+        to_take,
+        wish,
+      },
+    })
+  );
+  console.log('clicked', card);
 
-    cards.appendChild(new_card);
-  })
-})
+  card.remove();
 
-function getRandomColor() {
-  return ["red", "blue", "yellow", "green"][Math.floor(Math.random() * 4)];
+  const cards = document.querySelectorAll('aini-card');
+  cards.forEach((card) => {
+    card.removeEventListener('click', onCardClick);
+  });
 }

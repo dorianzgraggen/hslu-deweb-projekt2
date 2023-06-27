@@ -87,7 +87,7 @@ aini-card .number {
 
 aini-card>div {
   border-radius: 8px;
-  /* border: 0px solid var(--dark); */
+  /* border: 0px solid var(--dark)  ; */
   background-color: var(--light);
 
   margin: 6px;
