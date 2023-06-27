@@ -57,6 +57,8 @@ socket.addEventListener('message', (message) => {
       });
 
       elements.hand.classList.add("your-turn");
+      elements.draw_btn.disabled = false;
+
       break;
     }
 
@@ -102,6 +104,8 @@ function onCardClick(e) {
   });
 
   elements.hand.classList.remove("your-turn");
+
+  elements.draw_btn.disabled = true;
 }
 
 elements.draw_btn.addEventListener("click", e => {
