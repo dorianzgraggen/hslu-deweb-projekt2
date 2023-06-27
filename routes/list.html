@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/play.css">
+  <title>Play</title>
+  <script type="module" src="/elements/card.js" defer></script>
+  <style>
+    #hand {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 120px);
+      gap: 12px;
+    }
+
+    aini-card {
+      position: static;
+      transform: unset !important;
+      margin-left: 0;
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="hand">
+
+    <aini-card value="1" color="red"></aini-card>
+    <aini-card value="2" color="red"></aini-card>
+    <aini-card value="3" color="blue"></aini-card>
+    <aini-card value="4" color="blue"></aini-card>
+    <aini-card value="5" color="blue"></aini-card>
+    <aini-card value="6" color="green"></aini-card>
+    <aini-card value="7" color="yellow"></aini-card>
+    <aini-card value="8" color="yellow"></aini-card>
+    <aini-card value="9" color="blue"></aini-card>
+    <aini-card value="0" color="green"></aini-card>
+
+
+    <aini-card to_take="2" color="green"></aini-card>
+    <aini-card to_take="3" color="green"></aini-card>
+    <aini-card to_take="4" color="green"></aini-card>
+
+    <aini-card to_take="2" wish="true"></aini-card>
+    <aini-card to_take="3" wish="true"></aini-card>
+    <aini-card to_take="4" wish="true"></aini-card>
+    <aini-card wish="true"></aini-card>
+
+
+  </div>
+</body>
+
+<script src="/static/watcher.js"></script>
+
+</html>

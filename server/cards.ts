@@ -62,7 +62,7 @@ export class Card {
 
   static newRandom() {
     const value = Card.getRandomValue();
-    const color = this.getRandomColor();
+    let color = this.getRandomColor();
     const flip_direction = Math.random() > 0.9;
     let to_take = 0;
     if (Math.random() > 0.7) {
@@ -74,6 +74,11 @@ export class Card {
       to_take = 0;
       wish = false;
     }
+
+    if (wish) {
+      color = 'none';
+    }
+
     return new Card(color, value, flip_direction, to_take, wish);
   }
 }

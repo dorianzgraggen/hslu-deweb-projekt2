@@ -26,7 +26,11 @@ export class Card extends HTMLElement {
 
   render() {
     let parsed = html;
-    parsed = parsed.replaceAll("{value}", this.value)
+    if (!this.to_take) {
+      parsed = parsed.replaceAll("{value}", this.value)
+    } else {
+      parsed = parsed.replaceAll("{value}", "+" + this.to_take)
+    }
     this.innerHTML = parsed;
   }
 
