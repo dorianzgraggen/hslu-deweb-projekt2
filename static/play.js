@@ -48,7 +48,8 @@ socket.addEventListener('message', (message) => {
     }
 
     case 'your_turn': {
-      alert('your turn');
+      // alert('your turn');
+
       console.log("it's your turn");
 
       const cards = document.querySelectorAll('aini-card');
@@ -58,6 +59,20 @@ socket.addEventListener('message', (message) => {
 
       elements.hand.classList.add("your-turn");
       elements.draw_btn.disabled = false;
+
+      const keyframes = [
+        { background: "#0C2963" },
+        { background: "#23417e" },
+        { background: "#0C2963" },
+      ];
+
+      const timing = {
+        duration: 500,
+        iterations: 1,
+      };
+
+      document.body.animate(keyframes, timing);
+
 
       break;
     }

@@ -84,6 +84,9 @@ socket.addEventListener('open', (event) => {
 
 let players = 0;
 
+elements.start_button.disabled = true;
+
+
 socket.addEventListener('message', (message) => {
   console.log(message);
   const data = JSON.parse(message.data);
