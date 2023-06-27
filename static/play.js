@@ -9,6 +9,7 @@ let game_code = new URLSearchParams(window.location.search).get('code');
 
 const elements = {
   hand: document.getElementById('hand'),
+  draw_btn: document.getElementById("draw")
 };
 
 const player_name = 'a' + Math.random();
@@ -23,6 +24,13 @@ socket.addEventListener('open', (event) => {
   );
 });
 
+function appendCard(card) {
+  const div = document.createElement("div");
+  div.appendChild(card)
+  elements.hand.append(div);
+
+}
+
 socket.addEventListener('message', (message) => {
   console.log(message);
   const data = JSON.parse(message.data);
@@ -34,7 +42,7 @@ socket.addEventListener('message', (message) => {
       data.start_cards.forEach(
         ({ value, color, flip_direction, to_take, wish }) => {
           const card = new Card(value, color, flip_direction, to_take, wish);
-          elements.hand.append(card);
+          appendCard(card);
         }
       );
       break;
@@ -50,6 +58,15 @@ socket.addEventListener('message', (message) => {
       });
       break;
     }
+
+    case 'card_for_you': {
+      const { value, color, flip_direction, to_take, wish } = data.card;
+      const card = new Card(value, color, flip_direction, to_take, wish);
+      card.addEventListener('click', onCardClick);
+      appendCard(card);
+      break;
+    }
+
 
     default:
       break;
@@ -76,10 +93,18 @@ function onCardClick(e) {
   );
   console.log('clicked', card);
 
-  card.remove();
+  card.parentElement.remove();
 
   const cards = document.querySelectorAll('aini-card');
   cards.forEach((card) => {
     card.removeEventListener('click', onCardClick);
   });
 }
+
+elements.draw_btn.addEventListener("click", e => {
+  socket.send(JSON.stringify({
+    type: "draw_card",
+    code: game_code,
+    player_name
+  }))
+})

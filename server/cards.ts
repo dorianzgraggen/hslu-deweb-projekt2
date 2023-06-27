@@ -63,10 +63,10 @@ export class Card {
   static newRandom() {
     const value = Card.getRandomValue();
     let color = this.getRandomColor();
-    const flip_direction = Math.random() > 0.9;
+    const flip_direction = false;
     let to_take = 0;
     if (Math.random() > 0.7) {
-      to_take = Math.ceil(Math.random() * 3); // 1 to 4
+      to_take = 1 + Math.ceil(Math.random() * 2); // 2 to 4
     }
     let wish = Math.random() > 0.85;
 

@@ -43,6 +43,19 @@ export class Game {
     this.nextPlayer();
   }
 
+  public drawCard(player_name: string) {
+    let player = this.players.find((p) => p.name == player_name);
+
+    if (player) {
+      const card = Card.newRandom();
+      player.send({ type: 'card_for_you', card });
+      this.sendToHost({
+        type: 'new_card_for',
+        player_name,
+      });
+    }
+  }
+
   private nextPlayer() {
     this.current_player_index =
       (this.current_player_index + 1) % this.players.length;

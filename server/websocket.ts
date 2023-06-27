@@ -68,6 +68,12 @@ export function handleWebsocketReq(req: Request): Response {
           break;
         }
 
+        case 'draw_card': {
+          const game = game_map.get(parsed_message.code);
+          game?.drawCard(parsed_message.player_name);
+          break;
+        }
+
         case 'played_card': {
           const game = game_map.get(parsed_message.code);
 

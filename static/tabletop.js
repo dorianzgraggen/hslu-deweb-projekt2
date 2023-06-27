@@ -99,6 +99,15 @@ socket.addEventListener('message', (message) => {
       break;
     }
 
+    
+    case "new_card_for": {
+      const player = Array.from(document.querySelectorAll('aini-opponent')).find(p => p.name == data.player_name);
+
+      const count_element = player.querySelector(".count");
+      count_element.innerText = Number(count_element.innerText) + 1;
+      break;
+    }
+
     case "new_player_card": {
       const {value, color, flip_direction, to_take, wish} = data.card;
       const card = new Card(value, color, flip_direction, to_take, wish);
@@ -106,12 +115,6 @@ socket.addEventListener('message', (message) => {
 
       const player = Array.from(document.querySelectorAll('aini-opponent')).find(p => p.name == data.player_name);
 
-      Array.from(document.querySelectorAll('aini-opponent')).forEach(p => {
-        console.log(p.name);
-      })
-      console.log(Array.from(document.querySelectorAll('aini-opponent')));
-      console.log("player", player) 
-      
       const count_element = player.querySelector(".count");
       count_element.innerText = Number(count_element.innerText) - 1;
       
