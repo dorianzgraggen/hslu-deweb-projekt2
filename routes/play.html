@@ -41,6 +41,12 @@
       display: flex;
       justify-content: center;
       pointer-events: none;
+      transform: translateY(0px);
+      transition-duration: 0.3s;
+    }
+
+    .btm.hidden {
+      transform: translateY(80px);
     }
 
     .btm>* {
@@ -73,6 +79,30 @@
       position: fixed;
       top: 0;
     }
+
+    #join {
+      text-align: center;
+    }
+
+    #join.hidden {
+      display: none;
+    }
+
+    #names {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #names button {
+      background: none;
+      color: white;
+      padding: 12px;
+      margin: 10px;
+      border: 3px solid #fff7;
+      border-radius: 8px;
+      width: 80%;
+    }
   </style>
 </head>
 
@@ -81,8 +111,15 @@
   <div>
     <h1>äini!</h1>
   </div>
-  <div class="btm">
+  <div class="btm hidden">
     <button id="draw">zieh!</button>
+  </div>
+  <div id="join">
+
+    <p>Wähl en Name uus:</p>
+
+    <div id="names">...</div>
+
   </div>
   <div id="hand"></div>
 </body>

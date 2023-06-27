@@ -9,20 +9,17 @@ let game_code = new URLSearchParams(window.location.search).get('code');
 
 const elements = {
   hand: document.getElementById('hand'),
-  draw_btn: document.getElementById("draw")
+  draw_btn: document.getElementById("draw"),
+  btm: document.querySelector(".btm"),
+  names: document.getElementById("names"),
+  join: document.getElementById("join"),
 };
 
-const player_name = 'a' + Math.random();
+let player_name = 'a' + Math.random();
 
-socket.addEventListener('open', (event) => {
-  socket.send(
-    JSON.stringify({
-      type: 'new_player',
-      code: game_code,
-      player_name,
-    })
-  );
-});
+// socket.addEventListener('open', (event) => {
+  
+// });
 
 function appendCard(card) {
   const div = document.createElement("div");
@@ -30,6 +27,8 @@ function appendCard(card) {
   elements.hand.append(div);
 
 }
+
+fetchNames();
 
 socket.addEventListener('message', (message) => {
   console.log(message);
@@ -108,3 +107,39 @@ elements.draw_btn.addEventListener("click", e => {
     player_name
   }))
 })
+
+
+async function fetchNames() {
+  try {
+    const response = await fetch("/api/names");
+    const parsed = await response.json();
+    console.log(parsed);
+    elements.names.innerText = "";
+    parsed.forEach(n => {
+      console.log(n)
+      const btn = document.createElement("button");
+      btn.onclick = () => setReady(n);
+      btn.innerText = n;
+      btn.on
+      elements.names.appendChild(btn);
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function setReady(name) {
+  console.log("i bims, de " + name);
+  elements.btm.classList.remove("hidden");
+  elements.join.classList.add("hidden");
+  player_name = name;
+
+  socket.send(
+    JSON.stringify({
+      type: 'new_player',
+      code: game_code,
+      player_name,
+    })
+  );
+}
