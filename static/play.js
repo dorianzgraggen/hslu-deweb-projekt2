@@ -5,7 +5,7 @@ const socket = new WebSocket('ws://localhost:9999/ws');
 
 const id = Math.random();
 
-let game_code = new URLSearchParams(window.location.search).get('code');
+let game_code = "0000";
 
 const elements = {
   hand: document.getElementById('hand'),
@@ -18,7 +18,7 @@ const elements = {
 let player_name = 'a' + Math.random();
 
 // socket.addEventListener('open', (event) => {
-  
+
 // });
 
 function appendCard(card) {
@@ -55,6 +55,8 @@ socket.addEventListener('message', (message) => {
       cards.forEach((card) => {
         card.addEventListener('click', onCardClick);
       });
+
+      elements.hand.classList.add("your-turn");
       break;
     }
 
@@ -98,6 +100,8 @@ function onCardClick(e) {
   cards.forEach((card) => {
     card.removeEventListener('click', onCardClick);
   });
+
+  elements.hand.classList.remove("your-turn");
 }
 
 elements.draw_btn.addEventListener("click", e => {
@@ -147,5 +151,5 @@ function setReady(name) {
 
 document.querySelector("h1").addEventListener("click", e => {
   console.log(socket)
-  socket.send(JSON.stringify({type: "aini", code: game_code}));
+  socket.send(JSON.stringify({ type: "aini", code: game_code }));
 })
