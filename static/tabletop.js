@@ -47,7 +47,7 @@ let voices = new Array();
   }
 })();
 
-const socket = new WebSocket('ws://localhost:9999/ws');
+const socket = new WebSocket(`ws://${window.location.host}/ws`);
 
 const id = Math.random();
 
