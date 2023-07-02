@@ -1,12 +1,12 @@
 const adjectives = Deno.readTextFileSync('./server/api/names_adjectives.txt')
-  .split('\r\n')
+  .split(/\r?\n/)
   .filter((s) => s.length > 0);
 
 const nouns = Deno.readTextFileSync('./server/api/names_nouns.txt')
-  .split('===\r\n')
+  .split(/===\r?\n/)
   .map((s, i) =>
     s
-      .split('\r\n')
+      .split(/\r?\n/)
       .filter((t) => t.length > 0)
       .map((u) => `${i}${u}`)
   )
